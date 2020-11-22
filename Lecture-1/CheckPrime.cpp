@@ -14,7 +14,7 @@ int main(){
 			// That means n got divided by i
 			// thus not a prime number
 			cout<<"Not a Prime Number"<<endl;
-			return 0; // Means exit the program, inside main return 0 stops the program
+			return 0; // Means exit the program, Only inside main return 0 stops the program
 		}
 
 		i = i + 1;
@@ -25,5 +25,5 @@ int main(){
 	}
 	cout<<endl;
 
-	return 0; // Means exit the program, inside main return 0 stops the program
+	return 0; // Means exit the program, Only inside main return 0 stops the program
 }
