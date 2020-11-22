@@ -4,10 +4,9 @@ using namespace std;
 
 int main(){
 	
-	char ch = 66;
-	cout<<ch<<endl;
-	return 0;
-	// cin>>ch;
+	char ch;
+	
+	cin>>ch;
 
 	int x = ch;
 	cout<<"Char : "<<ch<<" Ascii code : "<<x<<endl;

@@ -10,7 +10,7 @@ int main(){
 	int f = init;
 	while(f<=fval){
 
-		cel = (5/9.0)*(f-32);
+		cel = 5*(f-32)/9;
 		cout<<f<<' '<<cel<<endl;
 
 		f = f + step;
@@ -18,6 +18,6 @@ int main(){
 
 	cout<<endl;
 
-	
+
 	return 0;
 }
