@@ -25,5 +25,5 @@ int main(){
 	}
 	cout<<endl;
 
-	return 0; // Means exit the ongoing program, Only inside main return 0 stops the program
+	return 0; // Means exit the ongoing program, Only inside the main return 0 stops the program
 }
