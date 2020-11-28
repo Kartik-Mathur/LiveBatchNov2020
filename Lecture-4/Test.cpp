@@ -13,7 +13,7 @@ int main(){
 	cout<<endl;
 
 // INCREASING STARS PART
-	for(row = 1; row < n ; row++){
+	for(row = 1; row < n-1 ; row++){
 		// Print n-row times spaces
 		for(i = 0 ; i < n - row  ; i++){
 			cout<<'*';
