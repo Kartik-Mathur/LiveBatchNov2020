@@ -19,7 +19,7 @@ int main(){
 			// ans += pow(2,exp1);
 			ans += (1<<exp1);
 		}
-		no = no>>1;
+		no = (no>>1);
 		exp1--;
 	}
 
