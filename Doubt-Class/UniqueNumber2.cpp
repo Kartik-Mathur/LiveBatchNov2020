@@ -4,14 +4,14 @@ using namespace std;
 
 int main(){
 	
-	#ifndef ONLINE_JUDGE
-	freopen("input.txt","r",stdin);
-	freopen("output.txt","w",stdout);
-	#endif
+	// #ifndef ONLINE_JUDGE
+	// freopen("input.txt","r",stdin);
+	// freopen("output.txt","w",stdout);
+	// #endif
 
 	int n;
 	cin>>n;
-	int a[1000];
+	int a[100001];
 	int ans = 0;
 	for(int i = 0 ; i < n ; i++){
 		cin>>a[i];
@@ -45,13 +45,6 @@ int main(){
 		swap(no1,no2);
 	}
 	cout<<no1<<" "<<no2<<endl;
-
-
-
-
-
-
-
 
 
 
