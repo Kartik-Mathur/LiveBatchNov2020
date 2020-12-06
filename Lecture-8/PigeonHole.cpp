@@ -34,15 +34,18 @@ int main(){
 	freq[0] = 1;// for null subarray
 
 	for(int i = 0 ; i < n ; i++){
-		freq[csum[i]]++;
+		int x = csum[i];
+		freq[x]++;
 	}
 	for(int i = 0 ; i < n ; i++){
 		cout<<freq[i]<<' ';
 	}	
 	cout<<endl;
 	int ans = 0;
+
 	for(int i = 0 ; i < n ; i++){
-		ans+= (freq[i]*(freq[i]-1))/2;
+		int x = freq[i];
+		ans+= x*(x-1)/2;
 	}
 	cout<<ans<<endl;
 
