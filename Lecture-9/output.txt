@@ -1,10 +1,9 @@
-0 0
-1 1
-2 2
-3 3
-4 4
-5 5
-6 6
-7 7
-8 8
-9 9
+1
+Value of a 10
+Address of a 0x7ffedfef8ab8
+8
+Value of f 10.15
+Address of f 0x7ffedfef8ab4
+Value of ch A
+Address of ch Aff"A
+

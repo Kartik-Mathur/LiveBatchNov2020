@@ -8,13 +8,19 @@ int main(){
 	freopen("output.txt","w",stdout);
 	#endif
 
+	// int a[]= {1,2,3,4};
+	// int *y = a;
+	// for(int i = 0 ; i < 4 ; i++){
+	// 	cout<<y[i]<<endl; // y[i] == *(y+i)
+	// }
 	int a = 10;
 	float f = 10.15;
 	char ch = 'A';
-
+	bool x = 1024*2*2*2;
+	cout<<x<<endl;
 	// int a = 10; // initilization
 	// int a;
-	// a = 10; // assignment
+	a = 10; // assignment
 
 	cout<<"Value of a "<<a<<endl;
 	cout<<"Address of a "<<&a<<endl;

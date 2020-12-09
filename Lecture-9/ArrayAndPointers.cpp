@@ -16,7 +16,12 @@ void BubbleSort(int *a,int n){
 				*(a+j) = (*(a+j)+*(a+j+1))-(*(a+j+1) = *(a+j));
 			}
 		}
+	}	
+}
 
+void Update(int a[],int n){
+	for(int i = 0 ; i < n-1 ; i++){
+		a[i] = 10;
 	}	
 }
 
@@ -28,11 +33,14 @@ int main(){
 
 	int a[] = {8,9,0,1,2,3,4,7,6,5};
 	int n = sizeof(a)/sizeof(int);
+	
 	// a denotes address of 0th index, that means we can store it
 	// in a pointer of int
 	// a[i] === *(a+i)
-	BubbleSort(a,n);
+	// BubbleSort(a,n);
+	Update(a,n);
 	Print(a,n);
+	cout<<(a+3)-(a)<<endl;
 
 
 	return 0;
