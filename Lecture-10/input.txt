@@ -1,4 +1,2 @@
-3
-Hello
-Coding
-World
+6
+CodingBlocks
