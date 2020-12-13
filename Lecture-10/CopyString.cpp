@@ -1,4 +1,4 @@
-// AppendTwoStrings
+// CopyString
 #include <iostream>
 using namespace std;
 int length(char *a){
@@ -10,12 +10,12 @@ int length(char *a){
 	return cnt;
 }
 
-void Append(char* a,char *b){
-	int alen = length(a),blen = length(b);
-	int i = alen;
-	int j = 0;
-	while(j<=blen){
-		a[i++] = b[j++];
+void Copy(char *a,char *b){
+	int blen = length(b);
+	int i = 0;
+	while(i<=blen){
+		a[i] = b[i];
+		i++;
 	}
 }
 
@@ -27,12 +27,11 @@ int main(){
 
 	char a[100],b[100];
 	cin>>a>>b;
-	cout<<a<<endl;
-	cout<<b<<endl;
-	Append(a,b);
-	cout<<a<<endl;
-	cout<<b<<endl;
+	cout<<"A : "<<a<<endl;
+	Copy(a,b);
+	cout<<"A : "<<a<<endl;
 
 
+	cout<<endl;
 	return 0;
 }
