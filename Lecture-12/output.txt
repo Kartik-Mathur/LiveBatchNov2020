@@ -1,2 +1,8 @@
-6 5 7 8 9 10 1 0 -1 -2 
-10 9 8 7 6 5 1 0 -1 -2 
+are
+We are learning strings.
+24
+Strings are an alternative of character arrays.
+We are learning strings.Strings are an alternative of character arrays.
+DEF is greater than ABC
+ABCD
+AB

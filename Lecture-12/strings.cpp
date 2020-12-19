@@ -38,7 +38,7 @@ int main(){
 	cout<<s<<endl;
 	s.pop_back();
 	s.pop_back();
-	cout<<s<<endl;
+	cout<<s <<endl;
 
 
 	return 0;
