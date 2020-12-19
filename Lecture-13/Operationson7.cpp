@@ -42,13 +42,25 @@ int First7(int *a,int n,int i){
 
 }
 
+void PrintAll7(int *a,int n,int i){
+	// base case 
+	if(i == n){
+		return;
+	}
+	// recursive case
+	if(a[i] == 7){
+		cout<<i<<' ';
+	}
+	PrintAll7(a,n,i+1);
+
+}
 int main(){
 	#ifndef ONLINE_JUDGE
 	freopen("input.txt","r",stdin);
 	freopen("output.txt","w",stdout);
 	#endif	
 
-	int a[]={1,4,5,17,6,17,8};
+	int a[]={1,4,5,7,6,7,8};
 	int n = sizeof(a)/sizeof(int);
 
 	if(Check7(a,n)){
@@ -59,6 +71,6 @@ int main(){
 	}
 
 	cout<<First7(a,n,0)<<endl;
-
+	PrintAll7(a,n,0);
 	return 0;
 }
