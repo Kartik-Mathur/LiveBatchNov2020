@@ -17,7 +17,6 @@ void merge(int *a,int *b,int *c,int s,int e){
 			a[k--]=c[j--];
 		}
 	}
-
 	while(i>=s){
 		a[k--] = b[i--];
 	}
@@ -31,7 +30,6 @@ void MergeSort(int *a,int s,int e){
 	if(s>=e){
 		return;
 	}
-
 	// recursive case
 	// 1. Divide
 	int b[100],c[100];
@@ -42,18 +40,12 @@ void MergeSort(int *a,int s,int e){
 	for(int i = mid+1; i<=e ; i++){
 		c[i] = a[i];
 	}
-
 	// 2. Sort
 	MergeSort(b,s,mid);
 	MergeSort(c,mid+1,e);
-	
 	// 3. Merge
 	merge(a,b,c,s,e);
 }
-
-
-
-
 
 int main(){
 	#ifndef ONLINE_JUDGE
