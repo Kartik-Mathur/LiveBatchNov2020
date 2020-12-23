@@ -2,7 +2,6 @@
 #include <iostream>
 using namespace std;
 int sol[100][100]={0};
-
 bool RatInMaze(char maze[][10],int i,int j,int n,int m){
 	// base case
 	if(i == n-1 and j == m-1){
@@ -15,9 +14,8 @@ bool RatInMaze(char maze[][10],int i,int j,int n,int m){
 			cout<<endl;
 		}
 		cout<<endl;
-		return true;
+		return false;
 	}
-
 	// recursive case
 	// i,j->Assume part of solution
 	sol[i][j] = 1;
@@ -28,7 +26,6 @@ bool RatInMaze(char maze[][10],int i,int j,int n,int m){
 			return true;
 		}
 	}
-
 	// 2. Check Neeche se Raasta Milla
 	if(i+1<n and maze[i+1][j] != 'X'){
 		bool KyaNeecheSeBaatBani = RatInMaze(maze,i+1,j,n,m);
@@ -36,7 +33,6 @@ bool RatInMaze(char maze[][10],int i,int j,int n,int m){
 			return true;
 		}
 	}
-
 	sol[i][j] = 0;
 	return false;
 }
