@@ -13,6 +13,7 @@ void Subsequences(char *in,int i,char *out,int j){
 	// recursive case
 	// 1. Exclude ith character
 	Subsequences(in,i+1,out,j);
+	
 	// 2. Include ith character
 	out[j] = in[i];
 	Subsequences(in,i+1,out,j+1);
