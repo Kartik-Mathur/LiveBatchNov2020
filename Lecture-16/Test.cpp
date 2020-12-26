@@ -18,8 +18,9 @@ bool KyaQueenRakhSkteHai(int board[][50],int i,int j,int n){
 		r--;
 		c++;
 	}
-	
+
 	// Check upper left diagnol
+	// r = i; c = j;
 	while(i>=0 and j>=0){
 		if(board[i][j] == 1){
 			return false;
