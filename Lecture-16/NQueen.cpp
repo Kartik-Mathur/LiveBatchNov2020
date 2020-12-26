@@ -69,8 +69,11 @@ bool Nqueen(int board[][50],int i,int n){
 
 int main(){
 	
-	int n = '1' - '0';
-	cout<<n;
+	int board[50][50]={0};
+	int n;
+	cin>>n;
+
+	Nqueen(board,0,n);
 
 	cout<<endl;
 	return 0;

@@ -15,7 +15,6 @@ bool KyaNumberRakhSkteHai(int mat[][9],int i,int j,int number ,int n){
 	n = sqrt(n); // n -> 9, now it will become n-> 3
 	int starti = (i/n)*n;
 	int startj = (j/n)*n;
-
 	for(int i = starti ; i < starti + n ; i++){
 		for(int j = startj ; j < startj + n ; j++){
 			if(mat[i][j] == number){
@@ -23,7 +22,6 @@ bool KyaNumberRakhSkteHai(int mat[][9],int i,int j,int number ,int n){
 			}
 		}
 	}
-
 	return true;
 }
 
@@ -51,7 +49,7 @@ bool SudokuSolver(int mat[][9],int i,int j,int n){
 
 	// Recursive case
 	for(int number = 1; number <= n; number++){
-		if(KyaNumberRakhSkteHai(mat,i,j,number,n)){
+		if(KyaNumberRakhSkteHai(mat,i,j,number,n) == true){
 			mat[i][j] = number; // If we can place number, we will place it
 			bool KyaBaakiSolveHua = SudokuSolver(mat,i,j+1,n);
 			if(KyaBaakiSolveHua){
