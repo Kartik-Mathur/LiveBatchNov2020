@@ -9,9 +9,12 @@ int ElephantWays(int i,int j){
 	}
 	// recursive case
 	int ans = 0;
+	// Pichli sabhi rows ka sum
 	for(int k = 0 ; k < i ; k++){
 		ans += ElephantWays(k,j);
 	}
+
+	// Pichle sabhi columns ka sum
 	for(int k = 0 ; k < j ; k++){
 		ans += ElephantWays(i,k);
 	}
