@@ -39,6 +39,16 @@ public:
 		seats = X.seats;
 	}
 
+	// Copy Assignment Operator
+	void operator=(Car X){
+		cout<<"Inside Copy Assignment"<<endl;
+		name = new char[strlen(X.name)+1];
+		strcpy(name,X.name);
+		price = X.price;
+		model = X.model;
+		seats = X.seats;
+	}
+
 	// Print all the details
 	void Print(){
 		cout<<"Name : "<<name<<endl;
@@ -71,7 +81,12 @@ public:
 	int getPrice(){
 		return price;
 	}
-
+	
+	// Destructor
+	~Car(){
+		cout<<"In Destructor "<<name<<endl;
+		delete []name;
+	}
 };
 ///////////////////////// !BLUEPRINT ////////////////////////////
 
@@ -86,7 +101,7 @@ int main(){
 	A.model = 2020;
 	A.seats = 4;
 	// A.UpdateName("Maruti");
-	A.Print();
+	// A.Print();
 	// cout<<A.name<<endl;
 	// cout<<A.price<<endl;
 	cout<<A.getPrice()<<endl;
@@ -101,7 +116,9 @@ int main(){
 
 	C.name[0] = 'B';
 
-
+	C = A;
+	C.name[0] = 'D';
+	A.Print();
 	B.Print();
 	C.Print();
 	D.Print();
