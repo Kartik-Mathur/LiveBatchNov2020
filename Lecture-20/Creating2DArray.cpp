@@ -12,6 +12,7 @@ int main(){
 	for(int i = 0 ; i < rows ; i++){
 		arr[i] = new int[col];
 	}
+	
 	int number = 1;
 	for(int i = 0 ; i < rows ; i++){
 		for(int j = 0 ; j < col ; j++){
