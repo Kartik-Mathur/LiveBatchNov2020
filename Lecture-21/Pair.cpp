@@ -41,15 +41,13 @@ int main(){
 	else{
 		cout<<"Y is less than x";
 	}
-
 	cout<<x.a<<endl;
 	cout<<x.b<<endl;
-	
+
 	// x ko y ki values mill jaay like this
 	// x[y]; --> Lets assume we want to copy values of y into x
 	x[y];  // This will not call copy constructor
 	// Pair z(y); or Pair z = y; --> This calls copy constructor
-
 	cout<<x.a<<endl;
 	cout<<x.b<<endl;
 
