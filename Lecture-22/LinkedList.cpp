@@ -69,6 +69,43 @@ void PrintLL(node* head){
 }
 
 
+///////////////////////////////// DELETION ///////////////////////
+void DeleteAtFront(node* &head,node* &tail){
+	if(head == NULL){
+		return;
+	}
+	else if(head->next == NULL){
+		delete head;
+		head = tail = NULL;
+	}
+	else{
+		node* n = head;
+		head = head->next;
+		delete n;
+	}
+}
+
+void DeleteAtEnd(node* &head, node* &tail){
+	if(head == NULL){
+		return;
+	}
+	else if(head->next == NULL){
+		delete head;
+		head = tail = NULL;
+	}
+	else{
+		node* temp = head;
+		while(temp->next != tail){
+			temp = temp->next;
+		}
+		delete tail;
+		tail = temp;
+		tail -> next = NULL;
+	}
+}
+
+///////////////////////////////// DELETION ///////////////////////
+
 int main(){
 	
 	#ifndef ONLINE_JUDGE
@@ -90,6 +127,12 @@ int main(){
 	InsertAtMid(head,tail,6,0);
 	PrintLL(head);
 	cout<<length(head)<<endl;
+	PrintLL(head);
+	DeleteAtFront(head,tail);
+	DeleteAtFront(head,tail);
+	PrintLL(head);
+	DeleteAtEnd(head,tail);
+	DeleteAtEnd(head,tail);
 	PrintLL(head);
 	return 0;
 }
