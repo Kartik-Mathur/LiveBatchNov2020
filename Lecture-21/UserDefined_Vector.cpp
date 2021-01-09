@@ -24,6 +24,7 @@ public:
 			for(int i = 0 ; i < oldms; i++){
 				arr[i] = oldarr[i];
 			}
+			
 			delete []oldarr;
 		}
 		arr[cs++] = data;
