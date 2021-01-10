@@ -82,14 +82,16 @@ void bubbleSort(node* &head) {
 			n = c ->next;
 			if (c->data > n->data) {
 				// swapping hogi
-				c->next = n->next;
-				n->next = c;
 				if (prev == NULL) {
 					// head change hoga
+					c->next = n->next;
+					n->next = c;
 					prev = head = n;
 				}
 				else {
 					// head change nhi hoga
+					c->next = n->next;
+					n->next = c;
 					prev->next = n;
 					prev = n;
 				}
@@ -104,6 +106,52 @@ void bubbleSort(node* &head) {
 }
 ///////////////////////////////// BUBBLE SORT /////////////////////
 
+node* merge(node* a, node* b) {
+	// base case
+	if (a == NULL) {
+		return b;
+	}
+	if (b == NULL) {
+		return a;
+	}
+
+	// recursive case
+	node* newHead;
+	if (a->data < b->data) {
+		newHead = a;
+		node* c = merge(a->next, b);
+		newHead->next = c;
+	}
+	else {
+		newHead = b;
+		node* c = merge(a, b->next);
+		newHead->next = c;
+	}
+	return newHead;
+}
+
+///////////////////////////////// MERGE SORT /////////////////////
+node* mergeSort(node* a) {
+	if (a == NULL or a->next == NULL) {
+		return a;
+	}
+
+	// recursive case
+	// 1. Divide
+	node* m = mid(a);
+	node* b = a;
+	node* c = m->next;
+	m->next = NULL;
+
+	// 2. Sort
+	b = mergeSort(b);
+	c = mergeSort(c);
+
+	// 3. Merge
+	node* newHead = merge(b, c);
+	return newHead;
+}
+///////////////////////////////// MERGE SORT /////////////////////
 
 int main() {
 
@@ -112,7 +160,7 @@ int main() {
 	freopen("output.txt", "w", stdout);
 #endif
 
-	node* head = NULL;
+	node* head = NULL, *head1 = NULL;
 
 	InsertAtEnd(head, 1);
 	InsertAtEnd(head, 2);
@@ -120,11 +168,23 @@ int main() {
 	InsertAtEnd(head, 21);
 	InsertAtEnd(head, 5);
 
-	PrintLL(head);
+	// PrintLL(head);
 	// ReverseLL(head);
 	// PrintLL(head);
-	bubbleSort(head);
+	head = mergeSort(head);
 	PrintLL(head);
+
+	InsertAtEnd(head1, 3);
+	InsertAtEnd(head1, 4);
+	InsertAtEnd(head1, 11);
+	InsertAtEnd(head1, 13);
+	InsertAtEnd(head1, 30);
+
+	PrintLL(head1);
+
+	node* newHead = merge(head, head1);
+	PrintLL(newHead);
+
 
 	return 0;
 }
