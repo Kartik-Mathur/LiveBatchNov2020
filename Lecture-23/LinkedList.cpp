@@ -132,6 +132,7 @@ node* merge(node* a, node* b) {
 
 ///////////////////////////////// MERGE SORT /////////////////////
 node* mergeSort(node* a) {
+	// base case
 	if (a == NULL or a->next == NULL) {
 		return a;
 	}
@@ -153,6 +154,65 @@ node* mergeSort(node* a) {
 }
 ///////////////////////////////// MERGE SORT /////////////////////
 
+
+///////////////////////////// Cycle Detection ////////////////////
+bool isCyclic(node* head) {
+	node* fast = head, *slow = head;
+	while (fast and fast->next) {
+		fast = fast->next->next;
+		slow = slow->next;
+
+		if (fast == slow) {
+			return true;
+		}
+	}
+
+	return false;
+}
+///////////////////////////// Cycle Detection ////////////////////
+
+
+///////////////////////////// Create Cycle ////////////////////
+void CreateCycle(node* head) {
+	node* temp = head;
+	while (temp->next) {
+		temp = temp->next;
+	}
+	temp->next = head->next->next;
+}
+///////////////////////////// Create Cycle ////////////////////
+
+///////////////////////////// BREAK CYCLE /////////////////////
+void BreakCycle(node* head) {
+	node* fast = head, *slow = head;
+
+	while (fast and fast->next) {
+		fast = fast->next->next;
+		slow = slow->next;
+
+		if (fast == slow) {
+			break;
+		}
+	}
+
+	slow = head;
+	node* prev = head;
+	while (prev->next != fast) {
+		prev = prev->next;
+	}
+
+	while (fast != slow) {
+		prev = fast;
+		fast = fast->next;
+		slow = slow->next;
+	}
+	prev->next = NULL;
+
+}
+///////////////////////////// BREAK CYCLE /////////////////////
+
+
+
 int main() {
 
 #ifndef ONLINE_JUDGE
@@ -164,27 +224,25 @@ int main() {
 
 	InsertAtEnd(head, 1);
 	InsertAtEnd(head, 2);
-	InsertAtEnd(head, 12);
-	InsertAtEnd(head, 21);
+	InsertAtEnd(head, 3);
+	InsertAtEnd(head, 4);
 	InsertAtEnd(head, 5);
+	InsertAtEnd(head, 6);
+	InsertAtEnd(head, 7);
+	InsertAtEnd(head, 8);
+	InsertAtEnd(head, 9);
+	InsertAtEnd(head, 10);
+	InsertAtEnd(head, 11);
+	CreateCycle(head);
 
-	// PrintLL(head);
-	// ReverseLL(head);
-	// PrintLL(head);
-	head = mergeSort(head);
+	if (isCyclic(head)) {
+		cout << "Yes cyclic" << endl;
+		BreakCycle(head);
+	}
+	else {
+		cout << "Not cyclic" << endl;
+	}
+
 	PrintLL(head);
-
-	InsertAtEnd(head1, 3);
-	InsertAtEnd(head1, 4);
-	InsertAtEnd(head1, 11);
-	InsertAtEnd(head1, 13);
-	InsertAtEnd(head1, 30);
-
-	PrintLL(head1);
-
-	node* newHead = merge(head, head1);
-	PrintLL(newHead);
-
-
 	return 0;
 }
