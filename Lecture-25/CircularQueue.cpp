@@ -11,50 +11,48 @@ public:
 };
 
 class Queue {
-	node* head, *tail;
-	int len;
+	int *arr;
+	int f, e, n, cs;
 public:
-	Queue(): head(NULL), tail(NULL), len(0) {}
+	Queue(int s = 5) {
+		arr = new int[s];
+		n = s;
+		f = 0;
+		e = n - 1;
+		cs = 0;
+	}
 
 	void push(int d) {
-		if (head == NULL) {
-			head = tail = new node(d);
+		if (cs < n) {
+			e = (e + 1) % n;
+			arr[e] = d;
+			cs++;
 		}
 		else {
-			node* n = new node(d);
-			tail->next = n;
-			tail = n;
+			cout << "Queue OverFlow" << endl;
 		}
-		len++;
 	}
 
 	void pop() {
-		if (head == NULL) {
-			return;
-		}
-		else if (head->next == NULL) {
-			delete head;
-			head = tail = NULL;
-			len--;
+		if (cs > 0) {
+			f = (f + 1) % n;
+			cs--;
 		}
 		else {
-			node* n = head;
-			head = head->next;
-			delete n;
-			len--;
+			cout << "Queue Under Flow" << endl;
 		}
 	}
 
 	int front() {
-		return head->data;
+		return arr[f];
 	}
 
 	bool empty() {
-		return head == NULL;
+		return cs == 0;
 	}
 
 	int size() {
-		return len;
+		return cs;
 	}
 };
 
@@ -71,6 +69,7 @@ int main() {
 	q.push(2);
 	q.push(3);
 	q.push(4);
+	q.push(5);
 
 	while (!q.empty()) {
 		cout << q.front() << " ";
@@ -78,9 +77,9 @@ int main() {
 	}
 
 	cout << endl;
+	q.pop();
 	return 0;
 }
-
 
 
 

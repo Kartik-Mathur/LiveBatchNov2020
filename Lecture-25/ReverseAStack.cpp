@@ -19,7 +19,6 @@ void ReverseStack(stack<int> &s) {
 	if (s.empty()) {
 		return;
 	}
-
 	// Recursive case
 	int TopElement = s.top();
 	s.pop();
