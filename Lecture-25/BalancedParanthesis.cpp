@@ -37,7 +37,6 @@ bool isBalanced(char *a) {
 			}
 		}
 	}
-
 	return s.empty();
 }
 
@@ -49,6 +48,7 @@ int main() {
 #endif
 
 	char a[] = "[{(a+b)+c*(d+e)}]";
+
 	if (isBalanced(a)) {
 		cout << "Balanced" << endl;
 	}
@@ -58,3 +58,13 @@ int main() {
 
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
