@@ -104,7 +104,7 @@ void bubbleSort(node* &head) {
 		}
 	}
 }
-///////////////////////////////// !BUBBLE SORT /////////////////////
+/////////////////////////////// !BUBBLE SORT ///////////////////////
 
 node* merge(node* a, node* b) {
 	// base case
@@ -210,8 +210,6 @@ void BreakCycle(node* head) {
 
 }
 ///////////////////////////// !BREAK CYCLE /////////////////////
-
-
 
 int main() {
 
