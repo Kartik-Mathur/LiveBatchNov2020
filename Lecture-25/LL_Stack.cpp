@@ -13,6 +13,7 @@ public:
 };
 
 class Stack {
+private:
 	node* head;
 	int len;
 public:
@@ -22,17 +23,10 @@ public:
 	}
 
 	void push(int d) {
-		// Insert at Front
-		if (head == NULL) {
-			head = new node(d);
-			len++;
-		}
-		else {
-			node* n = new node(d);
-			n->next = head;
-			head = n;
-			len++;
-		}
+		node* n = new node(d);
+		n->next = head;
+		head = n;
+		len++;
 	}
 
 	void pop() {
@@ -74,12 +68,17 @@ int main() {
 	freopen("output.txt", "w", stdout);
 #endif
 	Stack s;
-	s.push(1);
-	s.push(2);
-	s.push(3);
-	s.push(4);
-	s.push(5);
-	s.push(6);
+	// s.push(1);
+	// s.push(2);
+	// s.push(3);
+	// s.push(4);
+	// s.push(5);
+	// s.push(6);
+	s.push('A');
+	s.push('B');
+	s.push('C');
+	s.push('D');
+	s.push('E');
 
 	while (!s.empty()) {
 		cout << s.top() << " ";
