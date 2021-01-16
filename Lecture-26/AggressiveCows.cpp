@@ -19,7 +19,7 @@ bool CowsPlaceHoPai(ll *a, ll N, ll C, ll mid) {
 			}
 		}
 	}
-	return false;
+	return PlacedCows == C;
 }
 
 ll aggressiveCows(ll *a, ll N, ll C) {
