@@ -135,6 +135,29 @@ Pair fastDiameter(node* root) {
 
 //////////////////////////////// FAST DIAMETER //////////////////
 
+////////////////// FIND SUM OF THE BINARY TREE //////////////////
+int SumOfBT(node* root) {
+	if (!root) {
+		return 0;
+	}
+
+	return SumOfBT(root->left) + SumOfBT(root->right) + root->data;
+}
+////////////////// FIND SUM OF THE BINARY TREE //////////////////
+
+///////////////// MIRROR TREE ///////////////////////////////////
+void mirror(node* root) {
+	// base case
+	if (!root) {
+		return;
+	}
+
+	// recursive case
+	swap(root->left, root->right);
+	mirror(root->left);
+	mirror(root->right);
+}
+///////////////// MIRROR TREE ///////////////////////////////////
 
 int main() {
 
@@ -144,7 +167,7 @@ int main() {
 #endif
 
 	node* root = BuildTree();
-
+	mirror(root);
 	preOrder(root);
 	cout << endl;
 	inOrder(root);
@@ -158,6 +181,7 @@ int main() {
 	Pair ans = fastDiameter(root);
 	cout << "Fast Height: " << ans.height << endl;
 	cout << "Fast Diameter: " << ans.diameter << endl;
+	cout << "Sum of Tree: " << SumOfBT(root) << endl;
 
 	return 0;
 }
