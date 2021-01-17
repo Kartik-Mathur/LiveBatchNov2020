@@ -65,6 +65,77 @@ void postOrder(node* root) {
 	cout << root->data << " ";
 }
 
+int CountNodes(node *root) {
+	// base case
+	if (root == NULL) {
+		return 0;
+	}
+
+	// recursive case
+	return CountNodes(root->left) + CountNodes(root->right) + 1;
+}
+
+int height(node* root) {
+	// base case
+	if (root == NULL) {
+		return 0;
+	}
+
+	// recursive case
+	int left_height = height(root->left);
+	int right_height = height(root->right);
+	return max(left_height, right_height) + 1;
+}
+
+int diameter(node* root) {
+	// base case
+	if (root == NULL) {
+		return 0;
+	}
+
+	// 1. Diameter is in left subtree
+	int op1 = diameter(root->left);
+
+	// 2. Diameter is in right subtree
+	int op2 = diameter(root->right);
+
+	// 3. Diameter is via root
+	int op3 = height(root->left) + height(root->right);
+
+	return max(op1, max(op2, op3));
+}
+
+//////////////////////////////// FAST DIAMETER //////////////////
+class Pair {
+public:
+	int height;
+	int diameter;
+};
+
+Pair fastDiameter(node* root) {
+	Pair p;
+	// base case
+	if (root == NULL) {
+		p.height = p.diameter = 0;
+		return p;
+	}
+
+	// recursive case
+	Pair left  = fastDiameter(root->left);
+	Pair right = fastDiameter(root->right);
+
+	p.height = max(left.height, right.height) + 1;
+	int op1 = left.height + right.height;
+	int op2 = left.diameter;
+	int op3 = right.diameter;
+	p.diameter = max(op1, max(op2, op3));
+
+	return p;
+}
+
+//////////////////////////////// FAST DIAMETER //////////////////
+
+
 int main() {
 
 #ifndef ONLINE_JUDGE
@@ -79,6 +150,14 @@ int main() {
 	inOrder(root);
 	cout << endl;
 	postOrder(root);
+	cout << endl;
+	cout << "Total Node Count: " << CountNodes(root) << endl;
+	cout << "Height: " << height(root) << endl;
+	cout << "Diameter: " << diameter(root) << endl;
+
+	Pair ans = fastDiameter(root);
+	cout << "Fast Height: " << ans.height << endl;
+	cout << "Fast Diameter: " << ans.diameter << endl;
 
 	return 0;
 }
