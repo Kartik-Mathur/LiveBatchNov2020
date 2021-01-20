@@ -16,7 +16,6 @@ void preOrder(node* root) {
 	if (root == NULL) {
 		return;
 	}
-
 	// recursive case
 	cout << root->data << ",";
 	preOrder(root->left);
@@ -28,13 +27,8 @@ void inOrder(node* root) {
 	if (root == NULL) {
 		return;
 	}
-
-	// recursive case
-	// 1. Print left sub tree first
 	inOrder(root->left);
-	// 2. Print the root node
 	cout << root->data << ",";
-	// 3. Print the right sub tree
 	inOrder(root->right);
 }
 
@@ -43,13 +37,9 @@ void postOrder(node* root) {
 	if (root == NULL) {
 		return;
 	}
-
 	// recursive case
-	//1. Print left
 	postOrder(root->left);
-	//2. Print right
 	postOrder(root->right);
-	//3. Print root node
 	cout << root->data << " ";
 }
 
@@ -80,6 +70,7 @@ void PrintLevel(node* root) {
 		}
 	}
 }
+/////////////////////////////// !LEVEL ORDER //////////////////////////
 
 /////////////////////////////// Create BST //////////////////////////
 node* InsertInBST(node* root, int data) {
@@ -114,7 +105,37 @@ node* BuildTree() {
 
 }
 /////////////////////////////// Create BST //////////////////////////
+node* SearchBST(node* root, int key) {
+	// base case
+	if (!root) {
+		return root;
+	}
 
+	// recursive case
+	if (root->data == key) {
+		return root;
+	}
+	else if (key < root->data) {
+		return SearchBST(root->left, key);
+	}
+	else {
+		return SearchBST(root->right, key);
+	}
+}
+
+void PrintRange(node* root, int k1, int k2) {
+	// base case
+	if (!root) {
+		return;
+	}
+
+	// recursive case
+	PrintRange(root->left, k1, k2);
+	if (root->data >= k1 and root->data <= k2) {
+		cout << root->data << " ";
+	}
+	PrintRange(root->right, k1, k2);
+}
 
 int main() {
 
@@ -132,7 +153,15 @@ int main() {
 	cout << endl;
 
 	PrintLevel(root);
+	node* ans = SearchBST(root, 15);
 
+	if (ans) {
+		cout << "Found " << ans->data << endl;
+	}
+	else {
+		cout << "Node not Found" << endl;
+	}
+	PrintRange(root, 7, 13);
 	return 0;
 }
 
