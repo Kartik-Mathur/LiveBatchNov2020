@@ -131,10 +131,27 @@ void PrintRange(node* root, int k1, int k2) {
 
 	// recursive case
 	PrintRange(root->left, k1, k2);
+
 	if (root->data >= k1 and root->data <= k2) {
 		cout << root->data << " ";
 	}
+
 	PrintRange(root->right, k1, k2);
+}
+
+bool isBST(node* root, int min = INT_MIN, int max = INT_MAX) {
+	// base case
+	if (root == NULL) {
+		return true;
+	}
+
+	// recursive case
+	if (root->data >= min and root->data <= max and isBST(root->left, min, root->data) and isBST(root->right, root->data, max)) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 int main() {
@@ -162,6 +179,10 @@ int main() {
 		cout << "Node not Found" << endl;
 	}
 	PrintRange(root, 7, 13);
+	cout << endl;
+	if (isBST(root)) {
+		cout << "Yes" << endl;
+	}
 	return 0;
 }
 
