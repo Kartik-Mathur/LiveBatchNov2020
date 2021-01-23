@@ -1,6 +1,7 @@
 // BinarySearchTree.cpp
 #include <iostream>
 #include <queue>
+#include <cmath>
 using namespace std;
 
 class node {
@@ -102,55 +103,39 @@ node* BuildTree() {
 	}
 
 	return root;
-
 }
 /////////////////////////////// Create BST //////////////////////////
-node* SearchBST(node* root, int key) {
-	// base case
-	if (!root) {
-		return root;
+class Pair {
+public:
+	int height;
+	bool Balanced;
+	Pair() {
+		height = 0;
+		Balanced = true;
 	}
+};
 
-	// recursive case
-	if (root->data == key) {
-		return root;
-	}
-	else if (key < root->data) {
-		return SearchBST(root->left, key);
-	}
-	else {
-		return SearchBST(root->right, key);
-	}
-}
-
-void PrintRange(node* root, int k1, int k2) {
-	// base case
-	if (!root) {
-		return;
-	}
-
-	// recursive case
-	PrintRange(root->left, k1, k2);
-
-	if (root->data >= k1 and root->data <= k2) {
-		cout << root->data << " ";
-	}
-
-	PrintRange(root->right, k1, k2);
-}
-
-bool isBST(node* root, int min = INT_MIN, int max = INT_MAX) {
+Pair isBalanced(node* root) {
+	Pair p;
 	// base case
 	if (root == NULL) {
-		return true;
+		return p;
 	}
 
 	// recursive case
-	if (root->data >= min and root->data <= max and isBST(root->left, min, root->data) and isBST(root->right, root->data, max)) {
-		return true;
+	Pair left = isBalanced(root->left);
+	Pair right = isBalanced(root->right);
+
+	p.height = max(left.height, right.height) + 1;
+	if (left.Balanced and right.Balanced and (abs(left.height - right.height) <= 1) ) {
+		p.Balanced = true;
 	}
-	return false;
+	else {
+		p.Balanced = false;
+	}
+	return p;
 }
+
 
 int main() {
 
@@ -168,22 +153,15 @@ int main() {
 	cout << endl;
 
 	PrintLevel(root);
-	node* ans = SearchBST(root, 15);
 
-	if (ans) {
-		cout << "Found " << ans->data << endl;
+	Pair ans = isBalanced(root);
+	if (ans.Balanced) {
+		cout << "Tree is Balanced" << endl;
 	}
 	else {
-		cout << "Node not Found" << endl;
+		cout << "Not Balanced Tree" << endl;
 	}
-	PrintRange(root, 7, 13);
-	cout << endl;
-	if (isBST(root)) {
-		cout << "Yes a BST" << endl;
-	}
-	else {
-		cout << "Not a BST" << endl;
-	}
+	cout << "Height " << ans.height << endl;
 	return 0;
 }
 

@@ -10,4 +10,4 @@
 89 
 Found 15
 7 7 8 8 10 10 13 
-Yes
+Yes a BST
