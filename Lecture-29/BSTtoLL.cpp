@@ -105,37 +105,57 @@ node* BuildTree() {
 	return root;
 }
 /////////////////////////////// Create BST //////////////////////////
-class Pair {
+class LinkedList {
 public:
-	int height;
-	bool Balanced;
-	Pair() {
-		height = 0;
-		Balanced = true;
+	node* head;
+	node* tail;
+	LinkedList() {
+		head = tail = NULL;
 	}
 };
 
-Pair isBalanced(node* root) {
-	Pair p;
+LinkedList BSTtoLL(node* root) {
+	LinkedList l;
 	// base case
 	if (root == NULL) {
-		return p;
+		return l;
 	}
+
 
 	// recursive case
-	Pair left = isBalanced(root->left);
-	Pair right = isBalanced(root->right);
-
-	p.height = max(left.height, right.height) + 1;
-	if (left.Balanced and right.Balanced and (abs(left.height - right.height) <= 1) ) {
-		p.Balanced = true;
+	if (root->left == NULL and root->right == NULL) {
+		l.head = l.tail = root;
+	}
+	else if (root->left != NULL and root->right == NULL) {
+		LinkedList left = BSTtoLL(root->left);
+		left.tail -> right = root;
+		l.head = left.head;
+		l.tail = root;
+	}
+	else if (root->left == NULL and root->right != NULL) {
+		LinkedList right = BSTtoLL(root->right);
+		root->right = right.head;
+		l.head = root;
+		l.tail = right.tail;
 	}
 	else {
-		p.Balanced = false;
+		LinkedList left = BSTtoLL(root->left);
+		LinkedList right = BSTtoLL(root->right);
+		left.tail->right = root;
+		root->right = right.head;
+		l.head = left.head;
+		l.tail = right.tail;
 	}
-	return p;
+	return l;
 }
 
+void PrintLL(node* head) {
+	while (head != NULL) {
+		cout << head->data << "-->";
+		head = head->right;
+	}
+	cout << "NULL" << endl;
+}
 
 
 int main() {
@@ -154,15 +174,8 @@ int main() {
 	cout << endl;
 
 	PrintLevel(root);
-
-	Pair ans = isBalanced(root);
-	if (ans.Balanced) {
-		cout << "Tree is Balanced" << endl;
-	}
-	else {
-		cout << "Not Balanced Tree" << endl;
-	}
-	cout << "Height " << ans.height << endl;
+	LinkedList l = BSTtoLL(root);
+	PrintLL(l.head);
 	return 0;
 }
 
