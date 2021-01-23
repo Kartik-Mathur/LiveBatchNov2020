@@ -106,52 +106,20 @@ node* BuildTree() {
 	return root;
 }
 
-/////////////////////////////////// DELETE IN BST //////////////////////
-node* DeleteInBST(node*root, int key) {
-
+void RightView(node* root, int level, int &max_level) {
+	// base case
+	if (!root) {
+		return;
+	}
 
 	// recursive case
-	if (root->data > key) {
-		root->left = DeleteInBST(root->left, key);
-		return root;
+	if (level > max_level) {
+		cout << root->data << endl;
+		max_level = level;
 	}
-	else if (root->data < key) {
-		root->right = DeleteInBST(root->right, key);
-		return root;
-	}
-	else {
-		// root->data == key
-		// 1. No children
-		if (!root->left and !root->right) {
-			delete root;
-			return NULL;
-		}
-		else if (root->left and !root->right) {
-			// 1 children is present that is the left subtree
-			node* temp = root->left;
-			delete root;
-			return temp;
-		}
-		else if (!root->left and root->right) {
-			// 1 children is present that is the right subtree
-			node* temp = root->right;
-			delete root;
-			return temp;
-		}
-		else {
-			// 2 children are present
-			node* replace = root->right;
-			while (replace->left) {
-				replace = replace->left;
-			}
-			swap(root->data, replace->data);
-			root->right = DeleteInBST(root->right, replace->data);
-			return root;
-		}
-	}
-
+	RightView(root->right, level + 1, max_level);
+	RightView(root->left, level + 1, max_level);
 }
-/////////////////////////////////// DELETE IN BST //////////////////////
 
 
 int main() {
@@ -170,8 +138,8 @@ int main() {
 	cout << endl;
 
 	PrintLevel(root);
-	DeleteInBST(root, );
-	PrintLevel(root);
+	int max_level = 0;
+	RightView(root, 1, max_level);
 	return 0;
 }
 
