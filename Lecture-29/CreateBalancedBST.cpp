@@ -74,86 +74,18 @@ void PrintLevel(node* root) {
 /////////////////////////////// !LEVEL ORDER //////////////////////////
 
 /////////////////////////////// Create BST //////////////////////////
-node* InsertInBST(node* root, int data) {
+node* CreateTree(int *arr, int s, int e) {
 	// base case
-	if (root == NULL) {
-		root = new node(data);
-		return root;
+	if (s > e) {
+		return NULL;
 	}
 
 	// recursive case
-	if (data <= root->data) {
-		root->left = InsertInBST(root->left, data);
-	}
-	else {
-		root->right = InsertInBST(root->right, data);
-	}
-
+	int mid = (s + e) / 2;
+	node* root = new node(arr[mid]);
+	root->left = CreateTree(arr, s, mid - 1);
+	root->right = CreateTree(arr, mid + 1, e);
 	return root;
-}
-
-node* BuildTree() {
-	node* root = NULL;
-	int data;
-	cin >> data;
-
-	while (data != -1) {
-		root = InsertInBST(root, data);
-		cin >> data;
-	}
-
-	return root;
-}
-/////////////////////////////// Create BST //////////////////////////
-class LinkedList {
-public:
-	node* head;
-	node* tail;
-	LinkedList() {
-		head = tail = NULL;
-	}
-};
-
-LinkedList BSTtoLL(node* root) {
-	LinkedList l;
-	// base case
-	if (root == NULL) {
-		return l;
-	}
-
-	// recursive case
-	if (root->left == NULL and root->right == NULL) {
-		l.head = l.tail = root;
-	}
-	else if (root->left != NULL and root->right == NULL) {
-		LinkedList left = BSTtoLL(root->left);
-		left.tail -> right = root;
-		l.head = left.head;
-		l.tail = root;
-	}
-	else if (root->left == NULL and root->right != NULL) {
-		LinkedList right = BSTtoLL(root->right);
-		root->right = right.head;
-		l.head = root;
-		l.tail = right.tail;
-	}
-	else {
-		LinkedList left = BSTtoLL(root->left);
-		LinkedList right = BSTtoLL(root->right);
-		left.tail->right = root;
-		root->right = right.head;
-		l.head = left.head;
-		l.tail = right.tail;
-	}
-	return l;
-}
-
-void PrintLL(node* head) {
-	while (head != NULL) {
-		cout << head->data << "-->";
-		head = head->right;
-	}
-	cout << "NULL" << endl;
 }
 
 
@@ -163,8 +95,9 @@ int main() {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
 #endif
-
-	node* root = BuildTree();
+	int arr[] = {1, 2, 3, 4, 8, 9, 10};
+	int n = sizeof(arr) / sizeof(int);
+	node* root = CreateTree(arr, 0, n - 1);
 
 	preOrder(root);
 	cout << endl;
@@ -173,8 +106,7 @@ int main() {
 	cout << endl;
 
 	PrintLevel(root);
-	LinkedList l = BSTtoLL(root);
-	PrintLL(l.head);
+
 	return 0;
 }
 
