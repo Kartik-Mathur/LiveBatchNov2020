@@ -4,12 +4,12 @@
 #include <algorithm>
 using namespace std;
 
-// class Meracomparator {
-// public:
-// 	bool operator()(int a, int b) {
-// 		return a > b;
-// 	}
-// };
+class Meracomparator {
+public:
+	bool operator()(int a, int b) {
+		return a > b;
+	}
+};
 
 int main() {
 
@@ -19,8 +19,10 @@ int main() {
 #endif
 
 
-	// priority_queue<int, vector<int>, Meracomparator> h;
-	priority_queue<int, vector<int>, greater<int> > h;
+	priority_queue<int, vector<int>, Meracomparator> h;
+	// priority_queue<int, vector<int>, greater<int> > h; // Minheap
+	// priority_queue<int> q; // Max Heap
+
 	h.push(1);
 	h.push(10);
 	h.push(12);
