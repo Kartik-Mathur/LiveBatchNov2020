@@ -149,7 +149,6 @@ node* DeleteInBST(node*root, int key) {
 			return root;
 		}
 	}
-
 }
 /////////////////////////////////// DELETE IN BST //////////////////////
 
