@@ -12,19 +12,10 @@ void printHeap(Minheap h) {
 	}
 	cout << endl;
 }
-
 int main() {
-
-// #ifndef ONLINE_JUDGE
-// 	freopen("input.txt", "r", stdin);
-// 	freopen("output.txt", "w", stdout);
-// #endif
-
-
 	Minheap h; // Minheap
 	int n, count = 0;
 	int k = 3;
-
 	while (1) {
 		cin >> n;
 		if (n == -1) {
