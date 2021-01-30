@@ -82,12 +82,42 @@ public:
 			cout << i << "-->";
 			node* head = arr[i];
 			while (head) {
-				cout << "(" << head->key << "), ";
+				cout << head->key << " ";
 				head = head->next;
 			}
 			cout << endl;
 		}
 	}
+
+	node* search(string key) {
+		int indx = hashFunction(key);
+		node* head = arr[indx];
+		while (head) {
+			if (head->key == key) {
+				return head;
+			}
+			head = head->next;
+		}
+		return NULL;
+	}
+
+	int& operator[](string key) {
+		node* ans = search(key);
+		if (ans == NULL) {
+			// Key is not present
+			// In this case key should get inserted
+			int garbage;
+			insert(key, garbage);
+			ans = search(key);
+			return ans->val;
+		}
+		else {
+			// Key is present
+			// ans->key and ans->val
+			return ans->val;
+		}
+	}
+
 };
 
 
@@ -104,8 +134,12 @@ int main() {
 	h.insert("Pineapple", 50);
 	h.insert("Apple", 120);
 	h.insert("Guava", 60);
-	h.insert("Kiwi", 140);
+	// h.insert("Kiwi", 140);
+	h["Kiwi"] = 140;
 
+	h["Mango"] = 120;
+	cout << "Mango : " << h["Mango"] << endl;
+	cout << "Kiwi : " << h["Kiwi"] << endl;
 	h.Print();
 	cout << endl;
 	return 0;
