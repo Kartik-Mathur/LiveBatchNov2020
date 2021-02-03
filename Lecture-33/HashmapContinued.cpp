@@ -117,7 +117,6 @@ public:
 			return ans->val;
 		}
 	}
-
 };
 
 
