@@ -1,5 +1,0 @@
-4
-Apple 100
-Mango 120
-PineApple 50
-Kiwi 20
