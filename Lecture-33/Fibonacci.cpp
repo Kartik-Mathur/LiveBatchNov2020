@@ -9,17 +9,17 @@ int fibo(int n) {
 	return fibo(n - 1) + fibo(n - 2);
 }
 
+// Recursion + Memoization
 int topDown(int n, int *dp) {
 	// base case
 	if (n == 0 || n == 1) {
-		return n;
+		return dp[n] = n;
 	}
 
 	// Check if fun(n) is already calculated?
 	if (dp[n] != -1) {
 		return dp[n];
 	}
-
 	// recursive case
 	// int ans = fun(n - 1, dp) + fun(n - 2, dp);
 	// dp[n] = ans; // Write it in your notebook before you
@@ -27,6 +27,7 @@ int topDown(int n, int *dp) {
 	return dp[n] = topDown(n - 1, dp) + topDown(n - 2, dp);
 }
 
+// Iterative
 int BottomUp(int n) {
 	int *dp = new int[n + 1];
 
@@ -39,6 +40,11 @@ int BottomUp(int n) {
 	}
 	int ans = dp[n];
 	delete []dp;
+	cout << "Bottom Up : ";
+	for (int i = 0 ; i < n ; i++) {
+		cout << dp[i] << " ";
+	}
+	cout << endl;
 	return ans;
 }
 
@@ -57,6 +63,11 @@ int main() {
 	}
 
 	cout << topDown(n, dp) << endl;
+	cout << "Top Down : ";
+	for (int i = 0 ; i < n ; i++) {
+		cout << dp[i] << " ";
+	}
+	cout << endl;
 	cout << BottomUp(n) << endl;
 	cout << fibo(n) << endl;
 	return 0;
