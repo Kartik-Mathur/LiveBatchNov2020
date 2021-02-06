@@ -92,6 +92,7 @@ int main() {
 	}
 
 	cout << topDown(n, dp) << endl;
+	delete[] dp;
 	cout << BottomUp(n) << endl;
 	cout << minsteps(n) << endl;
 	return 0;
