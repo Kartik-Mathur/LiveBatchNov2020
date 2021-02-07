@@ -27,7 +27,7 @@ int bottomUp(int *price, int n) {
 	}
 
 	for (int i = n - 2 ; i >= 0 ; i--) {
-		for (int j = i + 1 ; j < n ; j++) {
+		for (int j = 0 ; j < n ; j++) {
 			if (i < j) {
 				int day = n - (j - i);
 				int op1 = day * price[i] + dp[i + 1][j];
