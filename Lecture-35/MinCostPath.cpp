@@ -25,24 +25,22 @@ int bottomUp(int a, int b, int cost[][4]) {
 
 	dp[0][0] = cost[0][0];
 
-	int sum = cost[0][0];
-	for (int k = 1 ; k < 4 ; k++) {
-		sum += cost[0][k];
-		dp[0][k] = sum;
-	}
-
-	sum = cost[0][0];
-	for (int k = 1 ; k < 4 ; k++) {
-		sum += cost[k][0];
-		dp[k][0] = sum;
-	}
-
-	for (int i = 1 ; i < 4 ; i++) {
-		for (int j = 1 ; j < 4 ; j++) {
-			dp[i][j] = cost[i][j] + min(dp[i - 1][j], dp[i][j - 1]);
+	for (int i = 0 ; i < 4 ; i++) {
+		for (int j = 0 ; j < 4 ; j++) {
+			if (i == 0 and j == 0) {
+				dp[i][j] = cost[i][j];
+			}
+			else if (i == 0) {
+				dp[i][j] = cost[i][j] + dp[i][j - 1];
+			}
+			else if (j == 0) {
+				dp[i][j] = cost[i][j] + dp[i - 1][j];
+			}
+			else {
+				dp[i][j] = cost[i][j] + min(dp[i - 1][j], dp[i][j - 1]);
+			}
 		}
 	}
-
 	return dp[a][b];
 }
 
@@ -63,7 +61,7 @@ int main() {
 
 	int dp[100][100];
 	memset(dp, -1, sizeof(dp));
-	int i = 1, j = 3;
+	int i = 1, j = 2;
 
 	cout << topDown(i, j, cost, dp) << endl;
 
