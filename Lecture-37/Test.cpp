@@ -3,6 +3,7 @@
 using namespace std;
 
 int lis(int *a, int n) {
+	// Calculate the length of LIS
 	int dp[1000];
 	for (int i = 0 ; i < n ; i++) {
 		dp[i] = 1;
@@ -24,6 +25,8 @@ int lis(int *a, int n) {
 		}
 	}
 
+
+	// Printing the LIS
 	vector<int> v;
 	v.push_back(a[i]);
 	int len = ans;
@@ -42,6 +45,7 @@ int lis(int *a, int n) {
 		cout << v[i] << " ";
 	}
 	cout << endl;
+
 	return ans;
 }
 
