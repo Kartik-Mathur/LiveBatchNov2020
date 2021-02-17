@@ -14,7 +14,7 @@ class Graph {
 	unordered_map<T, list<T> > h;
 public:
 
-	void addEdge(T u, T v, bool bidir = true) {
+	void addEdge(T u, T v, bool bidir = false) {
 		h[u].pb(v);
 		if (bidir) {
 			h[v].pb(u);
@@ -111,13 +111,31 @@ int main() {
 #endif
 
 	Graph<int> g;
-	int no_of_edges, no_of_nodes;
-	cin >> no_of_nodes >> no_of_edges;
+	// int no_of_edges, no_of_nodes;
+	// cin >> no_of_nodes >> no_of_edges;
 
-	int u, v;
-	for (int i = 0 ; i < no_of_edges ; i++) {
-		cin >> u >> v;
-		g.addEdge(u, v);
+	// int u, v;
+	// for (int i = 0 ; i < no_of_edges ; i++) {
+	// 	cin >> u >> v;
+	// 	g.addEdge(u, v);
+	// }
+	int board[50] = {0};
+	board[2] = 13;
+	board[5] = 2;
+	board[9] = 18;
+	board[18] = 11;
+	board[17] = -13;
+	board[20] = -14;
+	board[24] = -8;
+	board[25] = -10;
+	board[32] = -2;
+	board[34] = -22;
+
+	for (int u = 0 ; u <= 36 ; u++) {
+		for (int dice = 1; dice <= 6 ; dice++) {
+			int v = u + dice + board[u + dice];
+			g.addEdge(u, v);
+		}
 	}
 	// g.addEdge("Putin", "Trump");
 	// g.addEdge("Putin", "Modi");
@@ -128,10 +146,10 @@ int main() {
 	// g.addEdge("Prabhu", "Modi");
 
 
-	g.printList();
-	cout << "BFS :";
-	g.bfs(0);
-	int ans = g.SSSP(0, 5);
+	// g.printList();
+	// cout << "BFS :";
+	// g.bfs(0);
+	int ans = g.SSSP(0, 36);
 	cout << "Minimum Distance of " << 5 << " from " << 0 << ": " << ans  << endl;
 
 	return 0;
