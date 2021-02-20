@@ -30,14 +30,16 @@ public:
 		}
 	}
 
-	void dijkstra(T src) {
+	void dijkstra(T src, T des) {
 
 		unordered_map<T, int> distance;
 		for (auto node : h) {
 			distance[node.first] = INT_MAX;
 		}
+		unordered_map<T, T> p; // To store the parent who updated it the nodes distance
 
 		distance[src] = 0;
+		p[src] = src;
 
 		set<pair<int, T> > s;
 		s.insert(mp(0, src));
@@ -57,7 +59,7 @@ public:
 					if (f != s.end()) {
 						s.erase(f);
 					}
-
+					p[children.first] = parent;
 					distance[children.first] = parentDist + edgeDist;
 					s.insert(mp(distance[children.first], children.first));
 				}
@@ -68,6 +70,13 @@ public:
 		for (auto node : distance) {
 			cout << "Distance of " << node.first << " from " << src << " is " << node.second << endl;
 		}
+
+		T temp = des;
+		while (des != p[des]) {
+			cout << des << "<--";
+			des = p[des];
+		}
+		cout << des << endl;
 
 	}
 
@@ -89,14 +98,14 @@ int main() {
 
 	g.addEdge("Amritsar", "Agra", 1);
 	g.addEdge("Amritsar", "Jaipur", 4);
-	g.addEdge("Delhi", "Jaipur", 2);
+	g.addEdge("Delhi", "Jaipur", 1);
 	g.addEdge("Delhi", "Agra", 1);
 	g.addEdge("Bhopal", "Agra", 2);
 	g.addEdge("Bhopal", "Mumbai", 3);
-	g.addEdge("Jaipur", "Mumbai", 8);
+	g.addEdge("Jaipur", "Mumbai", 1);
 
 	// g.print();
-	g.dijkstra("Amritsar");
+	g.dijkstra("Amritsar", "Mumbai");
 
 
 	return 0;
