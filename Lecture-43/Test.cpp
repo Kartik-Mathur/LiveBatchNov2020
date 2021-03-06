@@ -48,7 +48,7 @@ int main() {
 		v.pb(x);
 	}
 
-	cout << evil(v, 31) << endl;
+	cout << evil(v, 30) << endl;
 
 	return 0;
 }
