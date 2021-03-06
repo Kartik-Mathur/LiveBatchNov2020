@@ -1,5 +1,7 @@
 // PashaAndStrings.cpp
 #include <iostream>
+#include <cstring>
+#include <algorithm>
 using namespace std;
 
 char a[200002];
